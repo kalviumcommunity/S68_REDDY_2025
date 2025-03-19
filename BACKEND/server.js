@@ -1,15 +1,17 @@
 const express = require("express");
-const cors = require("cors");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const eventRoutes = require("./routes/eventRoutes");
+const userRoutes = require("./routes/userRoutes");
 
+dotenv.config();
 const app = express();
+connectDB();
+
 app.use(express.json());
-app.use(cors()); 
 
-app.get("/api/message", (req, res) => {
-    res.json({ message: "Hello from the backend!" });
-});
+app.use("/events", eventRoutes);
+app.use("/users", userRoutes);
 
-app.listen(5000, () => {
-    console.log("Server is running on port 5000");
-});
-
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

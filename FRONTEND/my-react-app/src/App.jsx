@@ -1,11 +1,13 @@
 import './App.css'
-import Landpage from '../pages/Landpage'
+import EventList from './components/EventList'
+import Landpage from './pages/Landpage'
 
 function App() {
 
   return (
     <>
       <Landpage/>
+      <EventList/>
     </>
   )
 }
